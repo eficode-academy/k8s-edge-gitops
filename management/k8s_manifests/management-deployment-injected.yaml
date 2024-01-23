@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
       - image: ghcr.io/eficode-academy/edgek8s-management:lates
+        imagePullPolicy: IfNotPresent
         name: management-container
         resources: {}
         volumeMounts:
