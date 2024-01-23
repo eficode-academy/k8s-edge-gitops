@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: management-deployment
+  namespace: management
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: management
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: management
+    spec:
+      containers:
+      - image: ghcr.io/eficode-academy/edgek8s-management:lates
+        name: management-container
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/run/secrets/talos.dev
+          name: talos-secrets
+      volumes:
+      - name: talos-secrets
+        secret:
+          secretName: management-deployment-talos-secrets
+status: {}
+---
+apiVersion: talos.dev/v1alpha1
+kind: ServiceAccount
+metadata:
+    name: management-deployment-talos-secrets
+spec:
+    roles:
+        - os:reader
+---
+

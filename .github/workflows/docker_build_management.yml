@@ -1,12 +1,16 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Edge-k8s Management Image
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'management/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'management/**'
   workflow_dispatch:
 
 jobs:
