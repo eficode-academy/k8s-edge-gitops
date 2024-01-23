@@ -24,10 +24,22 @@ spec:
         volumeMounts:
         - mountPath: /var/run/secrets/talos.dev
           name: talos-secrets
+        - mountPath: /opt/kubeconfig
+          name: kubeconfig-volume
+        - mountPath: /opt/talosconfig
+          name: talosconfig-volume
       volumes:
       - name: talos-secrets
         secret:
           secretName: management-deployment-talos-secrets
+      - name: kubeconfig-volume
+        secret:
+          defaultMode: 420
+          secretName: kubeconfig-secret
+      - name: talosconfig-volume
+        secret:
+          defaultMode: 420
+          secretName: talosconfig-secret
 status: {}
 ---
 apiVersion: talos.dev/v1alpha1
