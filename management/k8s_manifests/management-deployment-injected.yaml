@@ -17,7 +17,7 @@ spec:
         app: management
     spec:
       containers:
-      - image: ghcr.io/eficode-academy/edgek8s-management:lates
+      - image: ghcr.io/eficode-academy/edgek8s-management:latest
         imagePullPolicy: IfNotPresent
         name: management-container
         resources: {}
