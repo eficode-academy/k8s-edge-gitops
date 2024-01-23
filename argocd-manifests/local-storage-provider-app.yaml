@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/eficode-academy/k8s-edge-gitops.git'
-    path: /local-storage-provider
+    path: local-storage-provider/
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
