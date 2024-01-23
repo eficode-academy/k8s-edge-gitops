@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: local-storage-provider-app
+  name: local-path-storage-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/eficode-academy/k8s-edge-gitops.git'
-    path: local-storage-provider/
+    path: local-path-storage/
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: local-storage-provider
+    namespace: local-path-storage
   syncPolicy:
     automated:
       prune: true
