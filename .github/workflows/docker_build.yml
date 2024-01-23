@@ -28,10 +28,10 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push
+    - name: Build and push management image
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./Dockerfile
+        file: ./management/Dockerfile
         push: true
         tags: ghcr.io/${{ github.repository_owner }}/edgek8s-management:latest
