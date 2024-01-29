@@ -1,5 +1,10 @@
 # Use AlmaLinux as the base image
-FROM almalinux:latest
+FROM alpine:latest
+
+RUN apk add --no-cache \
+        ca-certificates \
+        curl \
+        openssl
 
 # Install kubectl
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
