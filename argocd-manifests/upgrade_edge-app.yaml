@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: upgrade-edge-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/eficode-academy/k8s-edge-gitops.git'
+    path: upgrade-edge/
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: management
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
