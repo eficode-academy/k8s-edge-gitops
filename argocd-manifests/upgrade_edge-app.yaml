@@ -12,10 +12,14 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: management
+  operation:
+    sync:
+      syncStrategy:
+        apply:
+          force: true
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-      force: true
     syncOptions:
     - Replace=true
