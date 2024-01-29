@@ -11,10 +11,10 @@ spec:
       - name: upgrade-edge-contaienr
         image: ghcr.io/eficode-academy/edgek8s-upgrade:latest
         env:
-          - name: UPGRADE_TALOS
-            value: "true"
-          - name: TALOS_VERSION
-            value: "v1.4.8"
+          # - name: UPGRADE_TALOS
+          #   value: "true"
+          # - name: TALOS_VERSION
+          #   value: "v1.4.8"
           # - name: UPGRADE_KUBERNETES
           #   value: "true"
         volumeMounts:
