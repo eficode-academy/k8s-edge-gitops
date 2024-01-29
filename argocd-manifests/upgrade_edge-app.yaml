@@ -16,5 +16,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+      force: true
     syncOptions:
     - Replace=true
