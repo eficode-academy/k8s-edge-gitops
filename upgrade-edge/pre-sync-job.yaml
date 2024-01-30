@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-sync-upgrade-edge
+  namespace: management
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 0 
+  template:
+    spec:
+      containers:
+      - name: pre-upgrade-edge-contaienr
+        image: ghcr.io/eficode-academy/edgek8s-management:latest
+        command: ["kubectl",  "delete", "job", "upgrade-edge", "-n management", "--ignore-not-found=true"]
+        volumeMounts:
+        - mountPath: /var/run/secrets/talos.dev
+          name: talos-secrets
+        - mountPath: /opt/kubeconfig
+          name: kubeconfig-volume
+        - mountPath: /opt/talosconfig
+          name: talosconfig-volume
+      volumes:
+      - name: talos-secrets
+        secret:
+          secretName: management-deployment-talos-secrets
+      - name: kubeconfig-volume
+        secret:
+          defaultMode: 420
+          secretName: kubeconfig-secret
+      - name: talosconfig-volume
+        secret:
+          defaultMode: 420
+          secretName: talosconfig-secret
+      restartPolicy: Never
