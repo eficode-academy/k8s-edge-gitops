@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       containers:
-      - name: upgrade-edge-contaienr
+      - name: upgrade-edge-container
         image: ghcr.io/eficode-academy/edgek8s-upgrade:latest
         env:
           # - name: UPGRADE_TALOS
