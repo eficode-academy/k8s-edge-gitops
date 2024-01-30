@@ -13,7 +13,7 @@ spec:
       containers:
       - name: pre-upgrade-edge-contaienr
         image: ghcr.io/eficode-academy/edgek8s-management:latest
-        command: ["kubectl",  "delete", "job", "upgrade-edge", "-n management"]
+        command: ["sh", "-c", "kubectl delete job upgrade-edge -n management --ignore-not-found=true; echo Exit status: $?"] 
         volumeMounts:
         - mountPath: /var/run/secrets/talos.dev
           name: talos-secrets
