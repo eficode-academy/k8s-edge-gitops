@@ -14,7 +14,7 @@ spec:
           - name: UPGRADE_TALOS
             value: "true"
           - name: TALOS_VERSION
-            value: "v1.4.1"
+            value: "v1.4.7"
           #- name: UPGRADE_KUBERNETES
           #  value: "true"
         volumeMounts:
