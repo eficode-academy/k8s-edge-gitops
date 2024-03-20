@@ -13,8 +13,8 @@ spec:
         env:
           # - name: UPGRADE_TALOS
           #   value: "true"
-          # - name: TALOS_VERSION
-            # value: "v1.4.8"
+          - name: TALOS_VERSION
+            value: "v1.4.8"
           - name: UPGRADE_KUBERNETES
             value: "true"
           - name: KUBERNETES_VERSION
