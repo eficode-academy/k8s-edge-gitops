@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-ingress-controller-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/eficode-academy/k8s-edge-gitops.git'
+    path: montoring/prometheus-global-view
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: monitoring-global
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
