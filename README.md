@@ -1,3 +1,3 @@
-# k8s-edge-gitops
+# Resilient Edge Toolstack "RET" gitOps repository
 
-POC repo for GitOps on k8s edge cluster.
+POC repo for GitOps on RET.
