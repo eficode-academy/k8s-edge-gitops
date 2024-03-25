@@ -110,5 +110,5 @@ data:
           action: replace
           target_label: kubernetes_name
     remote_write:
-    - url: 'http://prometheus-global-headless-service.monitoring-global.svc.cluster.local:9090/api/v1/write'
+    - url: 'http://prometheus-global-service.monitoring-global.svc.cluster.local:9090/api/v1/write'
 
