@@ -21,6 +21,7 @@ spec:
             secret:
               name: monitoring-token
               namespace: monitoring
+              create: false
             host: https://prometheus-prod-24-prod-eu-west-2.grafana.net
             basicAuth:
               username: "1495779"
@@ -30,6 +31,7 @@ spec:
             secret:
               name: monitoring-token
               namespace: monitoring
+              create: false
             basicAuth:
               username: "848948"
               passwordKey: password
@@ -38,6 +40,7 @@ spec:
             secret:
               name: monitoring-token
               namespace: monitoring
+              create: false
             basicAuth:
               username: "843264"
               passwordKey: password
