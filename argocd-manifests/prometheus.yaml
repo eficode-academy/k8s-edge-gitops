@@ -1,0 +1,81 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-cloud
+  namespace: argocd
+spec:
+  destination:
+    name: 'grafana-cloud'
+    namespace: monitoring
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://grafana.github.io/helm-charts'
+    targetRevision: 7.3.7
+    chart: prometheus
+    helm:
+      values: |-
+        cluster:
+          name: RET-1
+        externalServices:
+          prometheus:
+            secret:
+              name: monitoring-token
+              namespace: monitoring
+            host: https://prometheus-prod-24-prod-eu-west-2.grafana.net
+            basicAuth:
+              username: "1495779"
+              passwordKey: password
+          loki:
+            host: https://logs-prod-012.grafana.net
+            secret:
+              name: monitoring-token
+              namespace: monitoring
+            basicAuth:
+              username: "848948"
+              passwordKey: password
+          tempo:
+            host: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
+            secret:
+              name: monitoring-token
+              namespace: monitoring
+            basicAuth:
+              username: "843264"
+              passwordKey: password
+        metrics:
+          enabled: true
+          cost:
+            enabled: false
+          node-exporter:
+            enabled: true
+        logs:
+          enabled: true
+          pod_logs:
+            enabled: true
+          cluster_events:
+            enabled: true
+        traces:
+          enabled: true
+        receivers:
+          grpc:
+            enabled: true
+          http:
+            enabled: true
+          zipkin:
+            enabled: false
+        opencost:
+          enabled: false
+        kube-state-metrics:
+          enabled: true
+        prometheus-node-exporter:
+          enabled: true
+        prometheus-operator-crds:
+          enabled: true
+        grafana-agent: {}
+        grafana-agent-logs: {}
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
