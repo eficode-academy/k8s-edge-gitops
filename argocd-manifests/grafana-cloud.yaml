@@ -19,30 +19,30 @@ spec:
         externalServices:
           prometheus:
             secret:
-              name: monitoring-token
+              name: prometheus-token
               namespace: monitoring
               create: false
             host: https://prometheus-prod-24-prod-eu-west-2.grafana.net
             basicAuth:
-              username: "1495779"
+              usernameKey: username
               passwordKey: password
           loki:
             host: https://logs-prod-012.grafana.net
             secret:
-              name: monitoring-token
+              name: loki-token
               namespace: monitoring
               create: false
             basicAuth:
-              username: "848948"
+              usernameKey: username
               passwordKey: password
           tempo:
             host: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
             secret:
-              name: monitoring-token
+              name: tempo-token
               namespace: monitoring
               create: false
             basicAuth:
-              username: "843264"
+              usernameKey: username
               passwordKey: password
         metrics:
           enabled: true
