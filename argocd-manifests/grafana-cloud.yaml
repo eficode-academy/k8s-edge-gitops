@@ -1,85 +1,85 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: grafana-cloud
-  namespace: argocd
-spec:
-  destination:
-    namespace: monitoring
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: ''
-    repoURL: 'https://grafana.github.io/helm-charts'
-    targetRevision: 0.12.3
-    chart: k8s-monitoring
-    helm:
-      values: |-
-        cluster:
-          name: RET-1
-        externalServices:
-          prometheus:
-            secret:
-              name: prometheus-token
-              namespace: monitoring
-              create: false
-            host: https://prometheus-prod-24-prod-eu-west-2.grafana.net
-            basicAuth:
-              usernameKey: username
-              passwordKey: password
-          loki:
-            host: https://logs-prod-012.grafana.net
-            secret:
-              name: loki-token
-              namespace: monitoring
-              create: false
-            basicAuth:
-              usernameKey: username
-              passwordKey: password
-          tempo:
-            host: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
-            secret:
-              name: tempo-token
-              namespace: monitoring
-              create: false
-            basicAuth:
-              usernameKey: username
-              passwordKey: password
-        metrics:
-          enabled: true
-          cost:
-            enabled: false
-          node-exporter:
-            enabled: true
-        logs:
-          enabled: true
-          pod_logs:
-            enabled: true
-          cluster_events:
-            enabled: true
-        traces:
-          enabled: true
-        receivers:
-          grpc:
-            enabled: true
-          http:
-            enabled: true
-          zipkin:
-            enabled: false
-        opencost:
-          enabled: false
-        kube-state-metrics:
-          enabled: true
-        prometheus-node-exporter:
-          enabled: true
-        prometheus-operator-crds:
-          enabled: true
-        grafana-agent: {}
-        grafana-agent-logs: {}
-  sources: []
-  project: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - ServerSideApply=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: grafana-cloud
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: monitoring
+#     server: 'https://kubernetes.default.svc'
+#   source:
+#     path: ''
+#     repoURL: 'https://grafana.github.io/helm-charts'
+#     targetRevision: 0.12.3
+#     chart: k8s-monitoring
+#     helm:
+#       values: |-
+#         cluster:
+#           name: RET-1
+#         externalServices:
+#           prometheus:
+#             secret:
+#               name: prometheus-token
+#               namespace: monitoring
+#               create: false
+#             host: https://prometheus-prod-24-prod-eu-west-2.grafana.net
+#             basicAuth:
+#               usernameKey: username
+#               passwordKey: password
+#           loki:
+#             host: https://logs-prod-012.grafana.net
+#             secret:
+#               name: loki-token
+#               namespace: monitoring
+#               create: false
+#             basicAuth:
+#               usernameKey: username
+#               passwordKey: password
+#           tempo:
+#             host: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
+#             secret:
+#               name: tempo-token
+#               namespace: monitoring
+#               create: false
+#             basicAuth:
+#               usernameKey: username
+#               passwordKey: password
+#         metrics:
+#           enabled: true
+#           cost:
+#             enabled: false
+#           node-exporter:
+#             enabled: true
+#         logs:
+#           enabled: true
+#           pod_logs:
+#             enabled: true
+#           cluster_events:
+#             enabled: true
+#         traces:
+#           enabled: true
+#         receivers:
+#           grpc:
+#             enabled: true
+#           http:
+#             enabled: true
+#           zipkin:
+#             enabled: false
+#         opencost:
+#           enabled: false
+#         kube-state-metrics:
+#           enabled: true
+#         prometheus-node-exporter:
+#           enabled: true
+#         prometheus-operator-crds:
+#           enabled: true
+#         grafana-agent: {}
+#         grafana-agent-logs: {}
+#   sources: []
+#   project: default
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - ServerSideApply=true
